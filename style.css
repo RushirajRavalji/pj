@@ -1,0 +1,42 @@
+.container{
+   display: flex;
+   justify-content: center;
+   justify-content: space-evenly;
+}
+
+a{
+   text-decoration: none;
+}
+
+
+#btn{
+   justify-content: center;
+   justify-content: space-evenly;
+   justify-items: center;
+   padding-top: 2%;
+}
+/* #nav{
+   position: sticky;
+  top: 0%;
+} */
+
+#leftside{
+   height: 100vh;
+}
+
+#righttside{
+   height: 100vh;
+}
+
+.align-middle {
+   vertical-align: middle;
+}
+
+/* #pic5{
+   height: 100%;
+   width: 100%;
+} */
+
+#btn1{
+   padding-top:1%;
+}

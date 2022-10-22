@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        .box{
+            max-width: 18rem;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 8px;
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container box">
+            Quiz Application<hr>
+            <div id="question-title">Question Title</div><hr>
+            <div id="Option-List">
+                <input type="radio" id="0" name="0">option value</input>
+            </div>
+            <div id="Score-area">Score-area</div>
+            <button id="submit">Submit</button><br>
+            <button id="start">Start</button><br>
+            <button id="play-again">Play Again</button>
+
+        </div>
+    </div>
+    <script src="quiz.js">
+    
+        let QuestionNo = 0;
+        let score = 0;
+        let question_title = Document.getElementById('question-title');
+        let Option_List = Document.getElementById('Option-List');
+        let Score_area = Document.getElementById('Score-area');
+        let btn_submit = Document.getElementById('submit');
+        let start = Document.getElementById('start');
+        let play_again = Document.getElementById('play-again'); 
+
+
+        hideItems(
+            
+      
+        
+        );
+        hideItems(Option_List);
+        hideItems(btn_submit);
+        hideItems(Score_area);
+        hideItems(start);
+        hideItems(play_again);
+
+
+        start.addEventListener('click',function (){
+        show(question_title);
+        show(Option_List);
+        show(btn_submit);
+        loadQuestions();
+        });
+
+
+        function loadQuestions(){
+            if(questionNo < data.length) {
+                let q =data[questionNo].qs;
+                let optionsArray = data[questionNo].options;
+
+                question_title.innerText = q;
+
+
+
+                for (let i = 0; i < optionsArray.length; i++) {
+                    Option_List.innethtml = Option_List.innerHtml +
+                    // const element = array[i];
+                  
+                
+                 `   
+                <input type="radio" id="${i}" name="${question_title}">${optionsArray[i]}</input><br>`;
+                }
+
+                
+            }
+        }
+
+
+        function hideItems(element){
+            element.style.display = "none";
+        }
+
+        function show(element){
+            element.style.display = "block";
+        }
+
+    </script>
+</body>
+</html>

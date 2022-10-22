@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz using html and js</title>
+    <style>
+        .box {
+            max-width: 18rem;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container box">
+            Quiz Application
+            <div id="question-title">QUESTION TITLE</div>
+            <div id="option-list">
+            </div>
+            <div id="score-area">Score Area</div>
+            <button id="submit">SUBMIT</button>
+            <button id="start">START</button>
+            <button id="play-again">PLAY AGAIN</button>
+        </div>
+    </div>
+    <script src="quiz.js"></script>
+    <script>
+
+        let questionNo = 0;
+        let score = 0;
+        let question_title = document.getElementById("question-title");
+        let option_list = document.getElementById("option-list");
+        let score_area = document.getElementById("score-area");
+        let start = document.getElementById("start");
+        let btn_submit = document.getElementById("submit");
+        let play_again = document.getElementById("play-again");
+
+        hideItems(question_title);
+        hideItems(option_list);
+        hideItems(score_area);
+        hideItems(btn_submit);
+        hideItems(play_again);
+
+        start.addEventListener('click', function () {
+            show(question_title);
+            show(option_list);
+            show(btn_submit);
+            loadQuestions();
+            hideItems(start);
+        })
+
+        function loadQuestions() {
+            if (questionNo < data.length) {
+                let q = data[questionNo].qs;
+                let optionsArray = data[questionNo].options;
+
+                question_title.innerText = q;
+
+                option_list.innerText = "";
+
+                for (let i = 0; i < optionsArray.length; i++) {
+                    option_list.innerHTML = option_list.innerHTML +
+                        `
+                    <input type="radio" id="${0}" name="${question_title}">${optionsArray[i]}</input><br>
+                    `;
+
+                }
+            } else {
+                console.log("no more question");
+                show(score_area);
+                score_area.innerHTML = "Your score is:" + score;
+
+                hideItems(btn_submit);
+                show(play_again);
+            }
+        }
+
+        play_again.addEventListener("click", function () {
+            location.reload();
+        })
+
+        btn_submit.addEventListener('click', function () {
+            let id = getCheckedId();
+            try {
+                if (id == data[questionNo].answerId) {
+                    score++;
+                    console.log("correct answer");
+                }
+            } catch (error) {
+
+            }
+
+            questionNo++;
+
+            loadQuestions();
+        })
+
+        function getCheckedId() {
+            for (let i = 0; i < 4; i++) {
+                if (document.getElementById(i).checked) {
+                    console.log("you selected:" + i)
+                    return i;
+                }
+
+            }
+        }
+
+        function hideItems(element) {
+            element.style.display = "none";
+        }
+
+        function show(element) {
+            element.style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>
